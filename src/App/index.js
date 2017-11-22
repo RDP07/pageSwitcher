@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import RouteMap from './../RouteMap'
-import Home from './../Home/index'
-import titleCase from 'title-case'
 
-function PageSwitcher(props, element) {
- console.log('pageSwitcher', props.children)
- console.log(props.children)
+function PageSwitcher(props) {
   return (
     <div>
       { props.children }
@@ -18,15 +14,14 @@ function pageRouter(nextRoute) {
   const route = RouteMap.filter((route) => {
     return route.name === nextRoute
   })
-  var Component = eval('Home')
-  return <Component />
+  return route[0].render
 }
 
 class App extends Component {
   
   render() {
     const nextRoute = 'HOME'
-
+    console.log(pageRouter(nextRoute))
 
     return (
         <section className="pages">
